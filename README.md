@@ -2,7 +2,7 @@
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](http://paypal.me/Komefai)
 
-Remap and use your keyboard to control PS4 Remote Play using [PS4 Macro](https://github.com/komefai/PS4Macro).
+Remap and use your keyboard to control PS4 Remote Play using [PS4 Macro](https://github.com/komefai/PS4Macro). This project will eventually be merged into a built-in feature of PS4 Macro.
 
 **Download latest version [here](https://github.com/komefai/PS4Macro.Remote/releases)!**
 
@@ -25,6 +25,6 @@ To add a recorded macro, click on `...` to browse and select the file.
 
 ## To-Do List
 
-- Multiple buttons at a time
+- Save/Load
 - Detect key without input manually
 - ...
