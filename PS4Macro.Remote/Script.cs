@@ -56,9 +56,14 @@ namespace PS4Macro.Remote
         public override void Update()
         {
             // Key is down
-            if (MainForm.IsKeyDown && MainForm.CurrentKeyDown != Keys.None)
+            if (MainForm.IsKeyDown())
             {
-                MainForm.KeyboardMap.ExecuteActionByKey(this, MainForm.CurrentKeyDown);
+                try
+                {
+                    List<Keys> keys = MainForm.PressedKeys.Keys.ToList();
+                    MainForm.KeyboardMap.ExecuteActionsByKey(this, keys);
+                }
+                catch (ArgumentException) { }
             }
             // Key is up
             else

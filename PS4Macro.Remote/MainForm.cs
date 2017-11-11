@@ -28,6 +28,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -35,9 +36,11 @@ namespace PS4Macro.Remote
 {
     public partial class MainForm : Form
     {
+        [DllImport("user32.dll")]
+        public static extern int GetKeyboardState(byte[] keystate);
+
         public bool FormLoaded { get; private set; }
-        public bool IsKeyDown { get; private set; }
-        public Keys CurrentKeyDown { get; private set; }
+        public Dictionary<Keys, bool> PressedKeys { get; private set; }
 
         public KeyboardMap KeyboardMap { get; private set; }
         private List<MappingAction> MappingsDataBinding { get; set; }
@@ -49,6 +52,8 @@ namespace PS4Macro.Remote
         public MainForm()
         {
             InitializeComponent();
+
+            PressedKeys = new Dictionary<Keys, bool>();
 
             KeyboardMap = new KeyboardMap();
             MappingsDataBinding = new List<MappingAction>()
@@ -91,6 +96,11 @@ namespace PS4Macro.Remote
             MacrosDataBinding = new List<MacroAction>();
 
             CreateActions();
+        }
+
+        public bool IsKeyDown()
+        {
+            return PressedKeys.Count > 0;
         }
 
         private void BindMappingsDataGrid()
@@ -138,13 +148,14 @@ namespace PS4Macro.Remote
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            CurrentKeyDown = e.KeyCode;
-            IsKeyDown = true;
+            if (!PressedKeys.ContainsKey(e.KeyCode))
+                PressedKeys.Add(e.KeyCode, true);
         }
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
-            IsKeyDown = false;
+            if (PressedKeys.ContainsKey(e.KeyCode))
+                PressedKeys.Remove(e.KeyCode);
         }
 
         private void mappingsDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)

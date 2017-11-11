@@ -42,23 +42,27 @@ namespace PS4Macro.Remote
             KeysDict = new Dictionary<Keys, BaseAction>();
         }
 
-        public void ExecuteActionByKey(Script script, Keys key)
+        public void ExecuteActionsByKey(Script script, List<Keys> keys)
         {
-            try
-            {
-                BaseAction action = KeysDict[key];
-                if (action != null)
-                {
-                    ExecuteAction(script, action);
-                }
-            }
-            catch (KeyNotFoundException)
-            {
+            var state = new DualShockState();
 
+            foreach (var key in keys)
+            {
+                if (key == Keys.None) continue;
+
+                try
+                {
+                    BaseAction action = KeysDict[key];
+                    ExecuteAction(script, action, state);
+                }
+                catch (KeyNotFoundException)
+                {
+
+                }
             }
         }
 
-        private void ExecuteAction(Script script, BaseAction action)
+        private void ExecuteAction(Script script, BaseAction action, DualShockState state = null)
         {
             if (action == null)
                 return;
@@ -68,7 +72,7 @@ namespace PS4Macro.Remote
                 MappingAction cast = action as MappingAction;
                 if (cast != null)
                 {
-                    ExecuteRemapAction(script, cast);
+                    ExecuteRemapAction(script, cast, state);
                     return;
                 }
             }
@@ -83,9 +87,10 @@ namespace PS4Macro.Remote
             }
         }
 
-        private void ExecuteRemapAction(Script script, MappingAction action)
+        private void ExecuteRemapAction(Script script, MappingAction action, DualShockState state)
         {
-            var state = new DualShockState();
+            if (state == null)
+                state = new DualShockState();
 
             // Try to set property using Reflection
             bool didSetProperty = false;
