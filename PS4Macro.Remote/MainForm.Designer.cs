@@ -30,16 +30,16 @@
         {
             this.mappingsGroupBox = new System.Windows.Forms.GroupBox();
             this.mappingsDataGridView = new System.Windows.Forms.DataGridView();
+            this.Button = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.macrosGroupBox = new System.Windows.Forms.GroupBox();
             this.macrosDataGridView = new System.Windows.Forms.DataGridView();
-            this.focusTextBox = new System.Windows.Forms.TextBox();
             this.Browse = new System.Windows.Forms.DataGridViewButtonColumn();
             this._Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Path = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.focusTextBox = new System.Windows.Forms.TextBox();
             this.tutorialLabel = new System.Windows.Forms.Label();
-            this.Button = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mappingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mappingsDataGridView)).BeginInit();
             this.macrosGroupBox.SuspendLayout();
@@ -71,6 +71,20 @@
             this.mappingsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mappingsDataGridView_CellContentClick);
             this.mappingsDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.mappingsDataGridView_CellValueChanged);
             // 
+            // Button
+            // 
+            this.Button.DataPropertyName = "Name";
+            this.Button.HeaderText = "Button";
+            this.Button.Name = "Button";
+            this.Button.ReadOnly = true;
+            // 
+            // Key
+            // 
+            this.Key.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Key.DataPropertyName = "Key";
+            this.Key.HeaderText = "Key";
+            this.Key.Name = "Key";
+            // 
             // macrosGroupBox
             // 
             this.macrosGroupBox.Controls.Add(this.macrosDataGridView);
@@ -95,15 +109,6 @@
             this.macrosDataGridView.TabIndex = 0;
             this.macrosDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.macrosDataGridView_CellContentClick);
             this.macrosDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.macrosDataGridView_CellValueChanged);
-            // 
-            // focusTextBox
-            // 
-            this.focusTextBox.BackColor = System.Drawing.Color.LightBlue;
-            this.focusTextBox.Location = new System.Drawing.Point(12, 381);
-            this.focusTextBox.Name = "focusTextBox";
-            this.focusTextBox.Size = new System.Drawing.Size(339, 20);
-            this.focusTextBox.TabIndex = 2;
-            this.focusTextBox.TextChanged += new System.EventHandler(this.focusTextBox_TextChanged);
             // 
             // Browse
             // 
@@ -132,6 +137,15 @@
             this.Path.HeaderText = "Path";
             this.Path.Name = "Path";
             // 
+            // focusTextBox
+            // 
+            this.focusTextBox.BackColor = System.Drawing.Color.LightBlue;
+            this.focusTextBox.Location = new System.Drawing.Point(12, 381);
+            this.focusTextBox.Name = "focusTextBox";
+            this.focusTextBox.Size = new System.Drawing.Size(339, 20);
+            this.focusTextBox.TabIndex = 2;
+            this.focusTextBox.TextChanged += new System.EventHandler(this.focusTextBox_TextChanged);
+            // 
             // tutorialLabel
             // 
             this.tutorialLabel.Location = new System.Drawing.Point(9, 410);
@@ -140,20 +154,6 @@
             this.tutorialLabel.TabIndex = 3;
             this.tutorialLabel.Text = "Click on the blue textbox to focus and control PS4 Remote Play";
             this.tutorialLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Button
-            // 
-            this.Button.DataPropertyName = "Name";
-            this.Button.HeaderText = "Button";
-            this.Button.Name = "Button";
-            this.Button.ReadOnly = true;
-            // 
-            // Key
-            // 
-            this.Key.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Key.DataPropertyName = "Key";
-            this.Key.HeaderText = "Key";
-            this.Key.Name = "Key";
             // 
             // MainForm
             // 
@@ -167,7 +167,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.KeyPreview = true;
             this.Name = "MainForm";
-            this.Text = "PS4 Macro Remote - v1.0";
+            this.Text = "PS4 Macro Remote - v1.1";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
