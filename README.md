@@ -1,5 +1,6 @@
-﻿# PS4Macro.Remote
+# PS4Macro.Remote
 
+[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20%40Me)](https://twitter.com/itskomefai)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](http://paypal.me/Komefai)
 
 Remap and use your keyboard to control PS4 Remote Play using [PS4 Macro](https://github.com/komefai/PS4Macro). This project will eventually be merged into a built-in feature of PS4 Macro.
