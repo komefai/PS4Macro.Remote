@@ -59,6 +59,10 @@ namespace PS4Macro.Remote
                 {
 
                 }
+                catch (ArgumentException)
+                {
+                    
+                }
             }
         }
 
@@ -99,7 +103,7 @@ namespace PS4Macro.Remote
                 SetValue(state, action.Property, action.Value);
                 didSetProperty = true;
             }
-            catch(Exception ex) { Debug.WriteLine(ex.StackTrace);}
+            catch(Exception ex) { Debug.WriteLine(ex.StackTrace); }
 
             if (didSetProperty)
             {

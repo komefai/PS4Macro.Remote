@@ -39,6 +39,7 @@ namespace PS4Macro.Remote
         {
             Config.Name = "Remote";
             Config.LoopDelay = 0;
+            Config.EnableCapture = false;
 
             ScriptForm = MainForm = new MainForm();
         }
