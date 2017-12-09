@@ -156,7 +156,7 @@
             this.Controls.Add(this.mappingsGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainForm";
-            this.Text = "PS4 Macro Remote - v1.1";
+            this.Text = "PS4 Macro Remote - v2.0";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.mappingsGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mappingsDataGridView)).EndInit();

@@ -15,7 +15,6 @@ Remap and use your keyboard to control PS4 Remote Play using [PS4 Macro](https:/
 
 1. Open PS4Macro.Remote.dll in PS4 Macro.
 2. Press play.
-3. Click on the blue textbox and keep it in focus.
 4. Press the keys on your keyboard.
 
 ## Settings
@@ -26,6 +25,4 @@ To add a recorded macro, click on `...` to browse and select the file.
 
 ## To-Do List
 
-- Save/Load
 - Detect key without input manually
-- ...
