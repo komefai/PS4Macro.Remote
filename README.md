@@ -15,6 +15,7 @@ Remap and use your keyboard to control PS4 Remote Play using [PS4 Macro](https:/
 
 1. Open PS4Macro.Remote.dll in PS4 Macro.
 2. Press play.
+3. Focus PS4 Remote Play window.
 4. Press the keys on your keyboard.
 
 ## Settings
