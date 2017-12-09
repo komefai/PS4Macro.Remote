@@ -30,7 +30,7 @@ using System.Windows.Forms;
 
 namespace PS4Macro.Remote
 {
-    class MacroAction : BaseAction
+    public class MacroAction : BaseAction
     {
         public string Path { get; set; }
 

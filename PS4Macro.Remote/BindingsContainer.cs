@@ -1,4 +1,4 @@
-﻿// PS4Macro.Remote (File: MappingAction.cs)
+﻿// PS4Macro.Remote (File: BindingsContainer.cs)
 //
 // Copyright (c) 2017 Komefai
 //
@@ -24,28 +24,36 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace PS4Macro.Remote
 {
-    public class MappingAction : BaseAction
+    public class BindingsContainer
     {
-        public string Property { get; set; }
-        public object Value { get; set; }
+        public List<MappingAction> Mappings { get; set; }
+        public List<MacroAction> Macros { get; set; }
 
-        public MappingAction()
+        public static void Serialize(string path, BindingsContainer container)
         {
-            
+            XmlSerializer serializer = new XmlSerializer(typeof(BindingsContainer));
+            using (TextWriter writer = new StreamWriter(path))
+            {
+                serializer.Serialize(writer, container);
+            }
         }
 
-        public MappingAction(string name, Keys key, string property, object value)
+        public static BindingsContainer Deserialize(string path)
         {
-            Name = name;
-            Key = key;
-            Property = property;
-            Value = value;
+            XmlSerializer deserializer = new XmlSerializer(typeof(BindingsContainer));
+            using (TextReader reader = new StreamReader(path))
+            {
+                object obj = deserializer.Deserialize(reader);
+                BindingsContainer container = obj as BindingsContainer;
+                return container;
+            }
         }
     }
 }

@@ -40,6 +40,8 @@ namespace PS4Macro.Remote
         [DllImport("user32.dll")]
         public static extern IntPtr GetForegroundWindow();
 
+        private const string BINDINGS_FILE = "bindings.xml";
+
         public bool FormLoaded { get; private set; }
         public Dictionary<Keys, bool> PressedKeys { get; private set; }
 
@@ -100,6 +102,12 @@ namespace PS4Macro.Remote
 
             MacrosDataBinding = new List<MacroAction>();
 
+            // Load bindings if file exist
+            if (System.IO.File.Exists(Helper.GetScriptFolder() + @"\" + BINDINGS_FILE))
+            {
+                LoadBindings();
+            }
+
             CreateActions();
         }
 
@@ -128,6 +136,22 @@ namespace PS4Macro.Remote
 
             //    GlobalKeyboardHook = null;
             //}
+        }
+
+        private void SaveBindings()
+        {
+            var container = new BindingsContainer();
+            container.Mappings = MappingsDataBinding;
+            container.Macros = MacrosDataBinding;
+
+            BindingsContainer.Serialize(BINDINGS_FILE, container);
+        }
+
+        private void LoadBindings()
+        {
+            var container = BindingsContainer.Deserialize(BINDINGS_FILE);
+            MappingsDataBinding = container.Mappings;
+            MacrosDataBinding = container.Macros;
         }
 
         private void BindMappingsDataGrid()
@@ -168,9 +192,11 @@ namespace PS4Macro.Remote
         {
             // https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx
 
+            // Remote Play not found
             if (CurrentProcess == null)
                 return;
 
+            // Check for active window
             var activeWindow = GetForegroundWindow();
             if (activeWindow != IntPtr.Zero)
             {
@@ -217,14 +243,9 @@ namespace PS4Macro.Remote
             FormLoaded = true;
         }
 
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        private void saveButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void MainForm_KeyUp(object sender, KeyEventArgs e)
-        {
-
+            SaveBindings();
         }
 
         private void mappingsDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)

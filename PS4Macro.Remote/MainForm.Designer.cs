@@ -38,6 +38,7 @@
             this._Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Path = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saveButton = new System.Windows.Forms.Button();
             this.mappingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mappingsDataGridView)).BeginInit();
             this.macrosGroupBox.SuspendLayout();
@@ -47,7 +48,7 @@
             // mappingsGroupBox
             // 
             this.mappingsGroupBox.Controls.Add(this.mappingsDataGridView);
-            this.mappingsGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.mappingsGroupBox.Location = new System.Drawing.Point(12, 31);
             this.mappingsGroupBox.Name = "mappingsGroupBox";
             this.mappingsGroupBox.Size = new System.Drawing.Size(339, 204);
             this.mappingsGroupBox.TabIndex = 0;
@@ -86,7 +87,7 @@
             // macrosGroupBox
             // 
             this.macrosGroupBox.Controls.Add(this.macrosDataGridView);
-            this.macrosGroupBox.Location = new System.Drawing.Point(12, 222);
+            this.macrosGroupBox.Location = new System.Drawing.Point(12, 241);
             this.macrosGroupBox.Name = "macrosGroupBox";
             this.macrosGroupBox.Size = new System.Drawing.Size(339, 153);
             this.macrosGroupBox.TabIndex = 1;
@@ -135,20 +136,28 @@
             this.Path.HeaderText = "Path";
             this.Path.Name = "Path";
             // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(255, 7);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(96, 23);
+            this.saveButton.TabIndex = 2;
+            this.saveButton.Text = "Save Bindings";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 382);
+            this.ClientSize = new System.Drawing.Size(364, 406);
+            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.macrosGroupBox);
             this.Controls.Add(this.mappingsGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "PS4 Macro Remote - v1.1";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.mappingsGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mappingsDataGridView)).EndInit();
             this.macrosGroupBox.ResumeLayout(false);
@@ -169,5 +178,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Path;
         private System.Windows.Forms.DataGridViewTextBoxColumn Button;
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
+        private System.Windows.Forms.Button saveButton;
     }
 }
