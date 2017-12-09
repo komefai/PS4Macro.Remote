@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseAction.cs" />
+    <Compile Include="GlobalKeyboardHook.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="KeyboardMap.cs" />
     <Compile Include="MacroAction.cs" />

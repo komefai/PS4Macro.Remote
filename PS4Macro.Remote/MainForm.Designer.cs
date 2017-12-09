@@ -38,8 +38,6 @@
             this._Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Path = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.focusTextBox = new System.Windows.Forms.TextBox();
-            this.tutorialLabel = new System.Windows.Forms.Label();
             this.mappingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mappingsDataGridView)).BeginInit();
             this.macrosGroupBox.SuspendLayout();
@@ -137,31 +135,11 @@
             this.Path.HeaderText = "Path";
             this.Path.Name = "Path";
             // 
-            // focusTextBox
-            // 
-            this.focusTextBox.BackColor = System.Drawing.Color.LightBlue;
-            this.focusTextBox.Location = new System.Drawing.Point(12, 381);
-            this.focusTextBox.Name = "focusTextBox";
-            this.focusTextBox.Size = new System.Drawing.Size(339, 20);
-            this.focusTextBox.TabIndex = 2;
-            this.focusTextBox.TextChanged += new System.EventHandler(this.focusTextBox_TextChanged);
-            // 
-            // tutorialLabel
-            // 
-            this.tutorialLabel.Location = new System.Drawing.Point(9, 410);
-            this.tutorialLabel.Name = "tutorialLabel";
-            this.tutorialLabel.Size = new System.Drawing.Size(342, 13);
-            this.tutorialLabel.TabIndex = 3;
-            this.tutorialLabel.Text = "Click on the blue textbox to focus and control PS4 Remote Play";
-            this.tutorialLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 432);
-            this.Controls.Add(this.tutorialLabel);
-            this.Controls.Add(this.focusTextBox);
+            this.ClientSize = new System.Drawing.Size(364, 382);
             this.Controls.Add(this.macrosGroupBox);
             this.Controls.Add(this.mappingsGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -176,7 +154,6 @@
             this.macrosGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.macrosDataGridView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -186,12 +163,10 @@
         private System.Windows.Forms.DataGridView mappingsDataGridView;
         private System.Windows.Forms.GroupBox macrosGroupBox;
         private System.Windows.Forms.DataGridView macrosDataGridView;
-        private System.Windows.Forms.TextBox focusTextBox;
         private System.Windows.Forms.DataGridViewButtonColumn Browse;
         private System.Windows.Forms.DataGridViewTextBoxColumn _Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Path;
-        private System.Windows.Forms.Label tutorialLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn Button;
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
     }

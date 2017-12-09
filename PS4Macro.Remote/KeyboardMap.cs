@@ -63,6 +63,10 @@ namespace PS4Macro.Remote
                 {
                     
                 }
+                catch (Exception)
+                {
+
+                }
             }
         }
 

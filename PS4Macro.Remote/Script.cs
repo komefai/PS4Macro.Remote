@@ -49,9 +49,14 @@ namespace PS4Macro.Remote
             StopMacro();
         }
 
+        public override void OnStopped()
+        {
+            MainForm.Stopped();
+        }
+
         public override void Start()
         {
-
+            MainForm.Start();
         }
 
         public override void Update()

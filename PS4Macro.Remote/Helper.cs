@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -36,6 +37,16 @@ namespace PS4Macro.Remote
         public static string GetScriptFolder()
         {
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        }
+
+        public static Process FindRemotePlayProcess()
+        {
+            Process[] processes = Process.GetProcessesByName("RemotePlay");
+            foreach (var p in processes)
+            {
+                return p;
+            }
+            return null;
         }
     }
 }

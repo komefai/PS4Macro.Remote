@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -37,7 +38,7 @@ namespace PS4Macro.Remote
     public partial class MainForm : Form
     {
         [DllImport("user32.dll")]
-        public static extern int GetKeyboardState(byte[] keystate);
+        public static extern IntPtr GetForegroundWindow();
 
         public bool FormLoaded { get; private set; }
         public Dictionary<Keys, bool> PressedKeys { get; private set; }
@@ -47,12 +48,16 @@ namespace PS4Macro.Remote
         private List<MacroAction> MacrosDataBinding { get; set; }
         private BindingList<MappingAction> MappingsBindingList { get; set; }
         private BindingList<MacroAction> MacrosBindingList { get; set; }
+        private GlobalKeyboardHook GlobalKeyboardHook { get; set; }
+        private Process CurrentProcess { get; set; }
 
 
         public MainForm()
         {
             InitializeComponent();
 
+            GlobalKeyboardHook = new GlobalKeyboardHook();
+            GlobalKeyboardHook.KeyboardPressed += OnKeyPressed;
             PressedKeys = new Dictionary<Keys, bool>();
 
             KeyboardMap = new KeyboardMap();
@@ -103,6 +108,28 @@ namespace PS4Macro.Remote
             return PressedKeys.Count > 0;
         }
 
+        public void Start()
+        {
+            //GlobalKeyboardHook = new GlobalKeyboardHook();
+            //GlobalKeyboardHook.KeyboardPressed += OnKeyPressed;
+
+            CurrentProcess = Helper.FindRemotePlayProcess();
+        }
+
+        public void Stopped()
+        {
+            //if (GlobalKeyboardHook != null)
+            //{
+            //    try
+            //    {
+            //        GlobalKeyboardHook.Dispose();
+            //    }
+            //    catch { }
+
+            //    GlobalKeyboardHook = null;
+            //}
+        }
+
         private void BindMappingsDataGrid()
         {
             mappingsDataGridView.AutoGenerateColumns = false;
@@ -137,6 +164,50 @@ namespace PS4Macro.Remote
             KeyboardMap.KeysDict = dict;
         }
 
+        private void OnKeyPressed(object sender, GlobalKeyboardHookEventArgs e)
+        {
+            // https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx
+
+            if (CurrentProcess == null)
+                return;
+
+            var activeWindow = GetForegroundWindow();
+            if (activeWindow != IntPtr.Zero)
+            {
+                if (activeWindow != CurrentProcess.MainWindowHandle)
+                {
+                    return;
+                }
+            }
+
+            int vk = e.KeyboardData.VirtualCode;
+            Keys key = (Keys)vk;
+            //System.Diagnostics.Debug.WriteLine("KEY: " + vk);
+
+            if (e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyDown)
+            {
+                //System.Diagnostics.Debug.WriteLine("KEY DOWN");
+
+                if (!PressedKeys.ContainsKey(key))
+                {
+                    PressedKeys.Add(key, true);
+                }
+
+                e.Handled = true;
+            }
+            else if (e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyUp)
+            {
+                //System.Diagnostics.Debug.WriteLine("KEY UP");
+
+                if (PressedKeys.ContainsKey(key))
+                {
+                    PressedKeys.Remove(key);
+                }
+
+                e.Handled = true;
+            }
+        }
+
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -148,14 +219,12 @@ namespace PS4Macro.Remote
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!PressedKeys.ContainsKey(e.KeyCode))
-                PressedKeys.Add(e.KeyCode, true);
+
         }
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
-            if (PressedKeys.ContainsKey(e.KeyCode))
-                PressedKeys.Remove(e.KeyCode);
+
         }
 
         private void mappingsDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -211,11 +280,6 @@ namespace PS4Macro.Remote
                     MacrosBindingList.ResetBindings();
                 }
             }
-        }
-
-        private void focusTextBox_TextChanged(object sender, EventArgs e)
-        {
-            focusTextBox.Text = string.Empty;
         }
     }
 }
