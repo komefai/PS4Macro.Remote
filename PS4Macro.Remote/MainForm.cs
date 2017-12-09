@@ -75,8 +75,8 @@ namespace PS4Macro.Remote
                 new MappingAction("R Up", Keys.I, "RY", 0),
                 new MappingAction("R Down", Keys.K, "RY", 255),
 
-                new MappingAction("R1", Keys.Q, "R1", true),
-                new MappingAction("L1", Keys.E, "L1", true),
+                new MappingAction("R1", Keys.E, "R1", true),
+                new MappingAction("L1", Keys.Q, "L1", true),
                 new MappingAction("L2", Keys.U, "L2", 255),
                 new MappingAction("R2", Keys.O, "R2", 255),
 
@@ -103,7 +103,7 @@ namespace PS4Macro.Remote
             MacrosDataBinding = new List<MacroAction>();
 
             // Load bindings if file exist
-            if (System.IO.File.Exists(Helper.GetScriptFolder() + @"\" + BINDINGS_FILE))
+            if (System.IO.File.Exists(GetBindingsFilePath()))
             {
                 LoadBindings();
             }
@@ -138,18 +138,23 @@ namespace PS4Macro.Remote
             //}
         }
 
+        private string GetBindingsFilePath()
+        {
+            return Helper.GetScriptFolder() + @"\" + BINDINGS_FILE;
+        }
+
         private void SaveBindings()
         {
             var container = new BindingsContainer();
             container.Mappings = MappingsDataBinding;
             container.Macros = MacrosDataBinding;
 
-            BindingsContainer.Serialize(BINDINGS_FILE, container);
+            BindingsContainer.Serialize(GetBindingsFilePath(), container);
         }
 
         private void LoadBindings()
         {
-            var container = BindingsContainer.Deserialize(BINDINGS_FILE);
+            var container = BindingsContainer.Deserialize(GetBindingsFilePath());
             MappingsDataBinding = container.Mappings;
             MacrosDataBinding = container.Macros;
         }
