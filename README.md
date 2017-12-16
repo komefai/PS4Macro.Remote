@@ -11,6 +11,10 @@ Remap and use your keyboard to control PS4 Remote Play using [PS4 Macro](https:/
 
 ![Screenshot](https://raw.githubusercontent.com/komefai/PS4Macro.Remote/master/_resources/Screenshot.png)
 
+#### Demo Video
+
+[![Demo Video](https://img.youtube.com/vi/XrpiHAHSFeo/0.jpg)](https://www.youtube.com/watch?v=XrpiHAHSFeo)
+
 ## Usage
 
 1. Open PS4Macro.Remote.dll in PS4 Macro.
@@ -23,6 +27,8 @@ Remap and use your keyboard to control PS4 Remote Play using [PS4 Macro](https:/
 To map a key to a button or a macro, edit the **Key** cell and enter your desire key. You can find the key from the **Member name** column in [this table](https://msdn.microsoft.com/en-us/library/system.windows.forms.keys(v=vs.110).aspx). Use `None` to disable the key.
 
 To add a recorded macro, click on `...` to browse and select the file.
+
+To use without a DualShock 4, set `<EmulateController>` to true in PS4 Macro's settings.xml file.
 
 ## To-Do List
 
