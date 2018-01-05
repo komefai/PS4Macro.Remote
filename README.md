@@ -5,7 +5,11 @@
 
 Remap and use your keyboard to control PS4 Remote Play using [PS4 Macro](https://github.com/komefai/PS4Macro). This project will eventually be merged into a built-in feature of PS4 Macro.
 
-**Download latest version [here](https://github.com/komefai/PS4Macro.Remote/releases)!**
+## EDIT: This project has been merged and DISCONTINUED (See below)
+
+Please use the "Remapper" feature in [PS4 Macro](https://github.com/komefai/PS4Macro) instead (Tools->Remapper). The feature is heavily based on this project and has been improved for better performance. Thanks to everyone who helped me with this project by reporting bugs and suggesting new features.
+
+---
 
 #### Screenshot
 
